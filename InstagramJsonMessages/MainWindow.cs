@@ -13,42 +13,31 @@ namespace InstagramJsonMessages
 {
     public partial class MainWindow : Form
     {
-        
-        Profile user;
-        AccountHistory logins;
-        CommentHistory comments;
-        List<ContactInfo> contacts;
-        Connections follows;
-        Media pics;
+        InstagramData prasedData;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        public void Show(ArrayList data)
+        public void Show(InstagramData data)
         {
-            this.user = (Profile)data[0];
-            this.logins = (AccountHistory)data[1]; ;
-            this.comments = (CommentHistory)data[2]; ;
-            this.contacts = (List<ContactInfo>)data[3]; ;
-            this.follows = (Connections)data[4]; ;
-            this.pics = (Media)data[5];
+            this.prasedData = data;
             Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text =
-                "name= " + user.name + "\n" +
-                "username= " + user.username + "\n" +
-                "gender= " + user.gender + "\n" +
-                "biography= " + user.biography + "\n" +
-                "email=" + user.email + "\n" +
-                "date_joined= " + user.date_joined + "\n" +
-                "private_account= " + user.private_account.ToString() + "\n" +
-                "profile_pic_url= " + user.profile_pic_url + "\n";
-            pictureBox1.ImageLocation = user.profile_pic_url;
+                "name= " + prasedData.user.name + "\n" +
+                "username= " + prasedData.user.username + "\n" +
+                "gender= " + prasedData.user.gender + "\n" +
+                "biography= " + prasedData.user.biography + "\n" +
+                "email=" + prasedData.user.email + "\n" +
+                "date_joined= " + prasedData.user.date_joined + "\n" +
+                "private_account= " + prasedData.user.private_account.ToString() + "\n" +
+                "profile_pic_url= " + prasedData.user.profile_pic_url + "\n";
+            pictureBox1.ImageLocation = prasedData.user.profile_pic_url;
 
         }
 
@@ -56,7 +45,7 @@ namespace InstagramJsonMessages
         {
             CommonForm lhf = new CommonForm();
             lhf.Show(2);
-            foreach (Login item in logins.login_history)
+            foreach (Login item in prasedData.logins.login_history)
             {
                 lhf.listView1.Items.Add(item.ip_address).SubItems.Add(item.timestamp);
             }
@@ -66,7 +55,7 @@ namespace InstagramJsonMessages
         {
             CommonForm cf = new CommonForm();
             cf.Show(1);
-            foreach (Object item in comments.media_comments)
+            foreach (Object item in prasedData.comments.media_comments)
             {
                 Newtonsoft.Json.Linq.JArray converted = (Newtonsoft.Json.Linq.JArray)item;
                 ListViewItem item1 = new ListViewItem(converted.First.ToString());
@@ -80,9 +69,9 @@ namespace InstagramJsonMessages
         {
             MediaViews mv = new MediaViews();
             mv.Show(1);
-            if (pics.direct != null)
+            if (prasedData.pics.direct != null)
             {
-                foreach (Picture item in pics.direct)
+                foreach (Picture item in prasedData.pics.direct)
                 {
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
@@ -90,9 +79,9 @@ namespace InstagramJsonMessages
                     mv.listView1.Items.Add(item1);
                 }
             }
-            if (pics.photos != null)
+            if (prasedData.pics.photos != null)
             {
-                foreach (Picture item in pics.photos)
+                foreach (Picture item in prasedData.pics.photos)
                 {
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
@@ -100,9 +89,9 @@ namespace InstagramJsonMessages
                     mv.listView2.Items.Add(item1);
                 }
             }
-            if (pics.stories != null)
+            if (prasedData.pics.stories != null)
             {
-                foreach (Picture item in pics.stories)
+                foreach (Picture item in prasedData.pics.stories)
                 {
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
@@ -110,9 +99,9 @@ namespace InstagramJsonMessages
                     mv.listView3.Items.Add(item1);
                 }
             }
-            if (pics.videos != null)
+            if (prasedData.pics.videos != null)
             {
-                foreach (Picture item in pics.videos)
+                foreach (Picture item in prasedData.pics.videos)
                 {
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
@@ -126,7 +115,7 @@ namespace InstagramJsonMessages
         {
             CommonForm cf = new CommonForm();
             cf.Show(3);
-            foreach (ContactInfo item in contacts)
+            foreach (ContactInfo item in prasedData.contacts)
             {
                 ListViewItem item1 = new ListViewItem(item.first_name);
                 item1.SubItems.Add(item.last_name);
@@ -139,9 +128,9 @@ namespace InstagramJsonMessages
         {
             MediaViews mv = new MediaViews();
             mv.Show(2);
-            if (follows.blocked_users != null)
+            if (prasedData.follows.blocked_users != null)
             {
-                foreach (object item in follows.blocked_users)
+                foreach (object item in prasedData.follows.blocked_users)
                 {
                     if (item != null)
                     {
@@ -153,9 +142,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.close_friends != null)
+            if (prasedData.follows.close_friends != null)
             {
-                foreach (object item in follows.close_friends)
+                foreach (object item in prasedData.follows.close_friends)
                 {
                     if (item != null)
                     {
@@ -167,9 +156,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.restricted_users != null)
+            if (prasedData.follows.restricted_users != null)
             {
-                foreach (object item in follows.restricted_users)
+                foreach (object item in prasedData.follows.restricted_users)
                 {
                     if (item != null)
                     {
@@ -181,9 +170,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.follow_requests_sent != null)
+            if (prasedData.follows.follow_requests_sent != null)
             {
-                foreach (object item in follows.follow_requests_sent)
+                foreach (object item in prasedData.follows.follow_requests_sent)
                 {
                     if (item != null)
                     {
@@ -195,9 +184,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.followers != null)
+            if (prasedData.follows.followers != null)
             {
-                foreach (object item in follows.followers)
+                foreach (object item in prasedData.follows.followers)
                 {
                     if (item != null)
                     {
@@ -209,9 +198,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.following != null)
+            if (prasedData.follows.following != null)
             {
-                foreach (object item in follows.following)
+                foreach (object item in prasedData.follows.following)
                 {
                     if (item != null)
                     {
@@ -223,9 +212,9 @@ namespace InstagramJsonMessages
                     }
                 }
             }
-            if (follows.following_hashtags != null)
+            if (prasedData.follows.following_hashtags != null)
             {
-                foreach (object item in follows.following_hashtags)
+                foreach (object item in prasedData.follows.following_hashtags)
                 {
                     if (item != null)
                     {

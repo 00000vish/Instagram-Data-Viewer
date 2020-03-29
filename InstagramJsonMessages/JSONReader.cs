@@ -42,6 +42,18 @@ namespace InstagramJsonMessages
         }
     }
 
+    //TODO
+    public class InstagramData
+    {
+        public Profile user;
+        public AccountHistory logins;
+        public CommentHistory comments;
+        public List<ContactInfo> contacts;
+        public Connections follows;
+        public Media pics;
+
+    }
+
     public class Connections
     {
         public Dictionary<string, string> blocked_users { get; set; }
