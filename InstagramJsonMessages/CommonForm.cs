@@ -37,6 +37,11 @@ namespace InstagramJsonMessages
                     listView1.Columns.Add("Timestamp", 140, HorizontalAlignment.Left);
                     listView1.Columns.Add("Posted by", 160, HorizontalAlignment.Left);
                     Size = new Size(280 + 60, 500); break;
+                case 5:
+                    listView1.Columns.Add("Timestamp", 140, HorizontalAlignment.Left);
+                    listView1.Columns.Add("Type", 80, HorizontalAlignment.Left);
+                    listView1.Columns.Add("Searched", 160, HorizontalAlignment.Left);
+                    Size = new Size(280 + 120, 500); break;
                 default: break;
             }
             Show();

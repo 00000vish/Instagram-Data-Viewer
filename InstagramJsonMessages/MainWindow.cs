@@ -68,7 +68,7 @@ namespace InstagramJsonMessages
         private void button4_Click(object sender, EventArgs e)
         {
             MediaViews mv = new MediaViews();
-            mv.Show(1);
+            mv.Show(1, prasedData.pathes);
             if (prasedData.pics.direct != null)
             {
                 foreach (Picture item in prasedData.pics.direct)
@@ -76,6 +76,7 @@ namespace InstagramJsonMessages
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
                     item1.SubItems.Add(item.path);
+                    item1.Tag = item.path;
                     mv.listView1.Items.Add(item1);
                 }
             }
@@ -86,6 +87,7 @@ namespace InstagramJsonMessages
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
                     item1.SubItems.Add(item.path);
+                    item1.Tag = item.path;
                     mv.listView2.Items.Add(item1);
                 }
             }
@@ -96,6 +98,7 @@ namespace InstagramJsonMessages
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
                     item1.SubItems.Add(item.path);
+                    item1.Tag = item.path;
                     mv.listView3.Items.Add(item1);
                 }
             }
@@ -106,6 +109,7 @@ namespace InstagramJsonMessages
                     ListViewItem item1 = new ListViewItem(item.caption);
                     item1.SubItems.Add(item.taken_at);
                     item1.SubItems.Add(item.path);
+                    item1.Tag = item.path;
                     mv.listView4.Items.Add(item1);
                 }
             }
@@ -127,7 +131,7 @@ namespace InstagramJsonMessages
         private void button5_Click(object sender, EventArgs e)
         {
             MediaViews mv = new MediaViews();
-            mv.Show(2);
+            mv.Show(2, prasedData.pathes);
             if (prasedData.follows.blocked_users != null)
             {
                 foreach (object item in prasedData.follows.blocked_users)
@@ -244,7 +248,7 @@ namespace InstagramJsonMessages
         private void button3_Click(object sender, EventArgs e)
         {
             MediaViews mv = new MediaViews();
-            mv.Show(3);
+            mv.Show(3, prasedData.pathes);
             if (prasedData.saved.saved_collections != null)
             {
                 foreach (object item in prasedData.saved.saved_collections)
@@ -275,5 +279,17 @@ namespace InstagramJsonMessages
             }
         }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            CommonForm lhf = new CommonForm();
+            lhf.Show(5);
+            foreach (SearchHistory item in prasedData.search)
+            {
+                ListViewItem item1 = new ListViewItem(item.time.ToString());
+                item1.SubItems.Add(item.type.ToString());
+                item1.SubItems.Add(item.search_click.ToString());
+                lhf.listView1.Items.Add(item1);
+            }
+        }
     }
 }

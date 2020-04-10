@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,11 @@ namespace InstagramJsonMessages
         {
             return JsonConvert.DeserializeObject<SavedHistory>(jsonPath);
         }
+        public List<SearchHistory> praseSearch(string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<List<SearchHistory>>(jsonPath);
+
+        }
     }
 
     //TODO
@@ -61,7 +67,16 @@ namespace InstagramJsonMessages
         public Media pics;
         public LikesHistory likes;
         public SavedHistory saved;
+        public List<SearchHistory> search;
+        public ArrayList pathes;
 
+    }
+
+    public class SearchHistory
+    {
+        public string search_click { get; set; }
+        public string time { get; set; }
+        public string type { get; set; }
     }
 
     public class SavedHistory

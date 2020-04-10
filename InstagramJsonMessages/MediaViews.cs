@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,15 @@ namespace InstagramJsonMessages
 {
     public partial class MediaViews : Form
     {
+        ArrayList paths = null;
         public MediaViews()
         {
             InitializeComponent();
         }
 
-        public void Show(int type)
+        public void Show(int type, ArrayList paths)
         {
+            this.paths = paths;
             listView1.Clear();
             listView2.Clear();
             listView3.Clear();
@@ -85,6 +88,19 @@ namespace InstagramJsonMessages
         private void MediaViews_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void listViewsDoubleClick(object sender, EventArgs e)
+        {
+            //only works if you select each instagram part 1 and part 2 and part3 folders and not root folder
+            foreach (string item in paths)
+            {
+                if (System.IO.File.Exists(item + "\\" + listView1.SelectedItems[0].Tag.ToString().Replace("/", "\\")))
+                {
+                    System.Diagnostics.Process.Start(item + "\\" + listView1.SelectedItems[0].Tag.ToString().Replace("/", "\\"));
+                }
+            }
+            
         }
     }
 }

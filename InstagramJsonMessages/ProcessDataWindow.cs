@@ -58,6 +58,7 @@ namespace InstagramJsonMessages
             List<string> media = new List<string>();
             List<string> likes = new List<string>();
             List<string> saved = new List<string>();
+            List<string> search = new List<string>();
 
             foreach (string item in paths)
             {
@@ -69,29 +70,26 @@ namespace InstagramJsonMessages
                 comments.AddRange(Directory.GetFiles(item, "*comments.json", SearchOption.AllDirectories));
                 likes.AddRange(Directory.GetFiles(item, "*likes.json", SearchOption.AllDirectories));
                 saved.AddRange(Directory.GetFiles(item, "*saved.json", SearchOption.AllDirectories));
+                search.AddRange(Directory.GetFiles(item, "*searches.json", SearchOption.AllDirectories));
             }
 
-            return processData(logins, comments, connections, contacts, profile, media, likes, saved);
-        }
-        private InstagramData processData(List<string> l, List<string> c, List<string> cc,
-            List<string> ccc, List<string> p, List<string> m, List<string> ll, List<string> s)
-        {
             JSONReader reader = new JSONReader();
-            InstagramData temp = new InstagramData(); 
+            InstagramData temp = new InstagramData();
             Media pics = null;
 
-            if (l.Count() ==1  && c.Count() == 1 && cc.Count() ==1 && ccc.Count() == 1 && p.Count() == 1 && ll.Count() == 1)
+            if (logins.Count() == 1 && comments.Count() == 1 && connections.Count() == 1 && contacts.Count() == 1 && profile.Count() == 1 && likes.Count() == 1)
             {
-                temp.user = (reader.getProfile(File.ReadAllText(p[0])));
-                temp.logins = (reader.praseLoginHistory(File.ReadAllText(l[0])));
-                temp.comments = (reader.praseCommentHistory(File.ReadAllText(c[0])));
-                temp.contacts = (reader.praseContacts(File.ReadAllText(ccc[0])));
-                temp.follows = (reader.praseConnections(File.ReadAllText(cc[0])));
-                temp.likes = (reader.praseLikes(File.ReadAllText(ll[0])));
-                temp.saved = (reader.praseSaved(File.ReadAllText(s[0])));
+                temp.user = (reader.getProfile(File.ReadAllText(profile[0])));
+                temp.logins = (reader.praseLoginHistory(File.ReadAllText(logins[0])));
+                temp.comments = (reader.praseCommentHistory(File.ReadAllText(comments[0])));
+                temp.contacts = (reader.praseContacts(File.ReadAllText(contacts[0])));
+                temp.follows = (reader.praseConnections(File.ReadAllText(connections[0])));
+                temp.likes = (reader.praseLikes(File.ReadAllText(likes[0])));
+                temp.saved = (reader.praseSaved(File.ReadAllText(saved[0])));
+                temp.search = (reader.praseSearch(File.ReadAllText(search[0])));
             }
 
-            foreach (string item in m)
+            foreach (string item in media)
             {
                 if (pics != null)
                 {
@@ -102,7 +100,8 @@ namespace InstagramJsonMessages
                     pics = reader.praseMedia(File.ReadAllText(item));
                 }
             }
-            temp.pics =  pics;
+            temp.pics = pics;
+            temp.pathes = paths;
             return temp;
         }
     }
