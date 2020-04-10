@@ -33,6 +33,10 @@ namespace InstagramJsonMessages
                     listView1.Columns.Add("Last Name", 160, HorizontalAlignment.Left);
                     listView1.Columns.Add("Contact", 160, HorizontalAlignment.Left);
                     Size = new Size(280 + 160 + 60, 500); break;
+                case 4:
+                    listView1.Columns.Add("Timestamp", 140, HorizontalAlignment.Left);
+                    listView1.Columns.Add("Posted by", 160, HorizontalAlignment.Left);
+                    Size = new Size(280 + 60, 500); break;
                 default: break;
             }
             Show();

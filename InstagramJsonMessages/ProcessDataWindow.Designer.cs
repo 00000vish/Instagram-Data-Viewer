@@ -1,6 +1,6 @@
 ﻿namespace InstagramJsonMessages
 {
-    partial class DumpSelector
+    partial class ProcessDataWindow
     {
         /// <summary>
         /// Required designer variable.

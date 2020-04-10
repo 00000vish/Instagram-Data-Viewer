@@ -69,6 +69,14 @@ namespace InstagramJsonMessages
                     listView7.Columns.Add("Timestamp", 300, HorizontalAlignment.Left);
                     listView7.Columns.Add("Username", 240, HorizontalAlignment.Left);
                     Size = new Size(280 + 260 + 50, 500); break;
+                case 3:
+                    tabControl1.TabPages[0].Text = "Saved Media";
+                    tabControl1.TabPages[1].Text = "Saved Collections";
+                    listView1.Columns.Add("Timestamp", 140, HorizontalAlignment.Left);
+                    listView1.Columns.Add("Posted by", 140, HorizontalAlignment.Left);
+                    listView2.Columns.Add("Timestamp", 140, HorizontalAlignment.Left);
+                    listView2.Columns.Add("Posted by", 140, HorizontalAlignment.Left);
+                    Size = new Size(280 + 260 + 50, 500); break;
                 default: break;
             }
             Show();

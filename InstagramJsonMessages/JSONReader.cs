@@ -11,8 +11,7 @@ namespace InstagramJsonMessages
     {
         public Profile getProfile(string jsonPath)
         {
-            Profile temp = JsonConvert.DeserializeObject<Profile>(jsonPath);
-            return temp;
+            return  JsonConvert.DeserializeObject<Profile>(jsonPath);
         }
         public AccountHistory praseLoginHistory(string jsonPath)
         {
@@ -40,6 +39,15 @@ namespace InstagramJsonMessages
         {
             return JsonConvert.DeserializeObject<Connections>(jsonPath);
         }
+
+        public LikesHistory praseLikes(string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<LikesHistory>(jsonPath);
+        }
+        public SavedHistory praseSaved(string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<SavedHistory>(jsonPath);
+        }
     }
 
     //TODO
@@ -51,7 +59,20 @@ namespace InstagramJsonMessages
         public List<ContactInfo> contacts;
         public Connections follows;
         public Media pics;
+        public LikesHistory likes;
+        public SavedHistory saved;
 
+    }
+
+    public class SavedHistory
+    {
+        public Object[] saved_collections { get; set; }
+        public Object[] saved_media { get; set; }
+    }
+
+    public class LikesHistory
+    {
+        public Object[] media_likes { get; set; }
     }
 
     public class Connections

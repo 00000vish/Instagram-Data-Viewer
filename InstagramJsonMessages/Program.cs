@@ -16,7 +16,7 @@ namespace InstagramJsonMessages
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DumpSelector());
+            Application.Run(new ProcessDataWindow());
         }
     }
 }

@@ -227,5 +227,53 @@ namespace InstagramJsonMessages
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CommonForm cf = new CommonForm();
+            cf.Show(4);
+            foreach (Object item in prasedData.likes.media_likes)
+            {
+                Newtonsoft.Json.Linq.JArray converted = (Newtonsoft.Json.Linq.JArray)item;
+                ListViewItem item1 = new ListViewItem(converted.First.ToString());
+                item1.SubItems.Add(converted.Last.ToString());
+                cf.listView1.Items.Add(item1);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MediaViews mv = new MediaViews();
+            mv.Show(3);
+            if (prasedData.saved.saved_collections != null)
+            {
+                foreach (object item in prasedData.saved.saved_collections)
+                {
+                    if (item != null)
+                    {
+                        Newtonsoft.Json.Linq.JArray converted = (Newtonsoft.Json.Linq.JArray)item;
+                        ListViewItem item1 = new ListViewItem(converted.First.ToString());
+                        item1.SubItems.Add(converted.Last.ToString());
+                        mv.listView1.Items.Add(item1);
+
+                    }
+                }
+            }
+            if (prasedData.saved.saved_media != null)
+            {
+                foreach (object item in prasedData.saved.saved_media)
+                {
+                    if (item != null)
+                    {
+                        Newtonsoft.Json.Linq.JArray converted = (Newtonsoft.Json.Linq.JArray)item;
+                        ListViewItem item1 = new ListViewItem(converted.First.ToString());
+                        item1.SubItems.Add(converted.Last.ToString());
+                        mv.listView1.Items.Add(item1);
+
+                    }
+                }
+            }
+        }
+
     }
 }

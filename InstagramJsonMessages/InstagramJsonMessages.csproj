@@ -55,11 +55,11 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="DumpSelector.cs">
+    <Compile Include="ProcessDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DumpSelector.Designer.cs">
-      <DependentUpon>DumpSelector.cs</DependentUpon>
+    <Compile Include="ProcessDataWindow.Designer.cs">
+      <DependentUpon>ProcessDataWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="CommonForm.cs">
       <SubType>Form</SubType>
@@ -82,8 +82,8 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DumpSelector.resx">
-      <DependentUpon>DumpSelector.cs</DependentUpon>
+    <EmbeddedResource Include="ProcessDataWindow.resx">
+      <DependentUpon>ProcessDataWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MediaViews.resx">
       <DependentUpon>MediaViews.cs</DependentUpon>

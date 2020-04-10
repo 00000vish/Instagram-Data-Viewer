@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace InstagramJsonMessages
 {
-    public partial class DumpSelector : Form
+    public partial class ProcessDataWindow : Form
     {
         ArrayList paths = new ArrayList();
-        public DumpSelector()
+        public ProcessDataWindow()
         {
             InitializeComponent();
         }
@@ -56,6 +56,8 @@ namespace InstagramJsonMessages
             List<string> contacts = new List<string>();
             List<string> profile = new List<string>();
             List<string> media = new List<string>();
+            List<string> likes = new List<string>();
+            List<string> saved = new List<string>();
 
             foreach (string item in paths)
             {
@@ -65,24 +67,28 @@ namespace InstagramJsonMessages
                 profile.AddRange(Directory.GetFiles(item, "*profile.json", SearchOption.AllDirectories));
                 media.AddRange(Directory.GetFiles(item, "*media.json", SearchOption.AllDirectories));
                 comments.AddRange(Directory.GetFiles(item, "*comments.json", SearchOption.AllDirectories));
+                likes.AddRange(Directory.GetFiles(item, "*likes.json", SearchOption.AllDirectories));
+                saved.AddRange(Directory.GetFiles(item, "*saved.json", SearchOption.AllDirectories));
             }
 
-            return processData(logins, comments, connections, contacts, profile, media);
+            return processData(logins, comments, connections, contacts, profile, media, likes, saved);
         }
         private InstagramData processData(List<string> l, List<string> c, List<string> cc,
-            List<string> ccc, List<string> p, List<string> m)
+            List<string> ccc, List<string> p, List<string> m, List<string> ll, List<string> s)
         {
             JSONReader reader = new JSONReader();
             InstagramData temp = new InstagramData(); 
             Media pics = null;
 
-            if (l.Count() ==1  && c.Count() == 1 && cc.Count() ==1 && ccc.Count() == 1 && p.Count() == 1)
+            if (l.Count() ==1  && c.Count() == 1 && cc.Count() ==1 && ccc.Count() == 1 && p.Count() == 1 && ll.Count() == 1)
             {
                 temp.user = (reader.getProfile(File.ReadAllText(p[0])));
                 temp.logins = (reader.praseLoginHistory(File.ReadAllText(l[0])));
                 temp.comments = (reader.praseCommentHistory(File.ReadAllText(c[0])));
                 temp.contacts = (reader.praseContacts(File.ReadAllText(ccc[0])));
                 temp.follows = (reader.praseConnections(File.ReadAllText(cc[0])));
+                temp.likes = (reader.praseLikes(File.ReadAllText(ll[0])));
+                temp.saved = (reader.praseSaved(File.ReadAllText(s[0])));
             }
 
             foreach (string item in m)
@@ -96,7 +102,7 @@ namespace InstagramJsonMessages
                     pics = reader.praseMedia(File.ReadAllText(item));
                 }
             }
-            temp.pics =  pics ;
+            temp.pics =  pics;
             return temp;
         }
     }
