@@ -60,6 +60,7 @@ namespace InstagramJsonMessages
                     if (item.media != null) {
                         var item1 = new ListViewItem("↳");
                         item1.SubItems.Add(item.media);
+                        item1.Tag = item.media;
                         item1.BackColor = colorCode[item.sender.ToString()];
                         listView2.Items.Insert(msg.participants.Count+1, item1);
                     }
@@ -68,6 +69,7 @@ namespace InstagramJsonMessages
                         var item1 = new ListViewItem("↳");
                         item1.SubItems.Add(item.media_share_url);
                         item1.BackColor = colorCode[item.sender.ToString()];
+                        item1.Tag = item.media_share_url;
                         listView2.Items.Insert(msg.participants.Count+1, item1);
                     }
                     if (item.media_share_caption != null) {  
@@ -108,6 +110,14 @@ namespace InstagramJsonMessages
                     }
                 }
             }            
+        }
+
+        private void listView2_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedItems.Count > 0 && listView2.SelectedItems[0].Tag != null)
+            {
+                System.Diagnostics.Process.Start(listView2.SelectedItems[0].Tag.ToString());
+            }
         }
     }
 }
