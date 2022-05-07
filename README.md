@@ -1,5 +1,6 @@
 # Instagram-Data-Viewer
-Display Instagram Data Json in a friendly way.
+Display Instagram Json data in a friendly way.
+
 
 
 ### Proccess Data
