@@ -12,7 +12,7 @@ namespace InstagramJsonMessages
     {
         public Profile getProfile(string jsonPath)
         {
-            return  JsonConvert.DeserializeObject<Profile>(jsonPath);
+            return JsonConvert.DeserializeObject<Profile>(jsonPath);
         }
         public AccountHistory praseLoginHistory(string jsonPath)
         {
@@ -33,10 +33,10 @@ namespace InstagramJsonMessages
         public Media praseMedia(string jsonPath)
         {
             return JsonConvert.DeserializeObject<Media>(jsonPath);
-           
+
         }
 
-        public Connections praseConnections( string jsonPath)
+        public Connections praseConnections(string jsonPath)
         {
             return JsonConvert.DeserializeObject<Connections>(jsonPath);
         }
@@ -54,6 +54,10 @@ namespace InstagramJsonMessages
             return JsonConvert.DeserializeObject<List<SearchHistory>>(jsonPath);
 
         }
+        public List<Message> praseMessages(string jsonPath)
+        {
+            return JsonConvert.DeserializeObject<List<Message>>(jsonPath);
+        }
     }
 
     //TODO
@@ -69,8 +73,30 @@ namespace InstagramJsonMessages
         public SavedHistory saved;
         public List<SearchHistory> search;
         public ArrayList pathes;
+        public List<Message> msgs;
 
     }
+
+
+    public class Conversation
+    {
+        public string sender { get; set; }
+        public DateTime created_at { get; set; }
+        public string media { get; set; }
+        public string media_owner { get; set; }
+        public string media_share_caption { get; set; }
+        public string media_share_url { get; set; }
+        public string text { get; set; }
+        public string story_share { get; set; }
+        public string story_share_type { get; set; }
+    }
+
+    public class Message
+    {
+        public List<string> participants { get; set; }
+        public List<Conversation> conversation { get; set; }
+    }
+
 
     public class SearchHistory
     {

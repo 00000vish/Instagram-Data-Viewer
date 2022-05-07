@@ -291,5 +291,11 @@ namespace InstagramJsonMessages
                 lhf.listView1.Items.Add(item1);
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageViews temp = new MessageViews();
+            temp.Show(prasedData.msgs);
+        }
     }
 }

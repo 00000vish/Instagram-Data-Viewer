@@ -55,6 +55,12 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageViews.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageViews.Designer.cs">
+      <DependentUpon>MessageViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProcessDataWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageViews.resx">
+      <DependentUpon>MessageViews.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProcessDataWindow.resx">
       <DependentUpon>ProcessDataWindow.cs</DependentUpon>

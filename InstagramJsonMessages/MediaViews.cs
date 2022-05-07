@@ -92,12 +92,26 @@ namespace InstagramJsonMessages
 
         private void listViewsDoubleClick(object sender, EventArgs e)
         {
+            ListView current = null;
             //only works if you select each instagram part 1 and part 2 and part3 folders and not root folder
+
+            string chbxName = ((ListView)sender).Name;
+            switch (chbxName)
+            {
+                case "listView1": current = listView1; break;
+                case "listView2": current = listView2; break;
+                case "listView3": current = listView3; break;
+                case "listView4": current = listView4; break;
+                case "listView5": current = listView5; break;
+                case "listView6": current = listView6; break;
+                case "listView7": current = listView7; break;
+                default:break;
+            }
             foreach (string item in paths)
             {
-                if (System.IO.File.Exists(item + "\\" + listView1.SelectedItems[0].Tag.ToString().Replace("/", "\\")))
+                if (System.IO.File.Exists(item + "\\" + current.SelectedItems[0].Tag.ToString().Replace("/", "\\")))
                 {
-                    System.Diagnostics.Process.Start(item + "\\" + listView1.SelectedItems[0].Tag.ToString().Replace("/", "\\"));
+                    System.Diagnostics.Process.Start(item + "\\" + current.SelectedItems[0].Tag.ToString().Replace("/", "\\"));
                 }
             }
             

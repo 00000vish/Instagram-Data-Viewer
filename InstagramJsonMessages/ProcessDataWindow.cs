@@ -59,6 +59,7 @@ namespace InstagramJsonMessages
             List<string> likes = new List<string>();
             List<string> saved = new List<string>();
             List<string> search = new List<string>();
+            List<string> msgs = new List<string>();
 
             foreach (string item in paths)
             {
@@ -71,6 +72,7 @@ namespace InstagramJsonMessages
                 likes.AddRange(Directory.GetFiles(item, "*likes.json", SearchOption.AllDirectories));
                 saved.AddRange(Directory.GetFiles(item, "*saved.json", SearchOption.AllDirectories));
                 search.AddRange(Directory.GetFiles(item, "*searches.json", SearchOption.AllDirectories));
+                msgs.AddRange(Directory.GetFiles(item, "*messages.json", SearchOption.AllDirectories));
             }
 
             JSONReader reader = new JSONReader();
@@ -87,6 +89,7 @@ namespace InstagramJsonMessages
                 temp.likes = (reader.praseLikes(File.ReadAllText(likes[0])));
                 temp.saved = (reader.praseSaved(File.ReadAllText(saved[0])));
                 temp.search = (reader.praseSearch(File.ReadAllText(search[0])));
+                temp.msgs = (reader.praseMessages(File.ReadAllText(msgs[0])));
             }
 
             foreach (string item in media)
